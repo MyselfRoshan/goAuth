@@ -25,6 +25,7 @@ func Router() http.Handler {
 	router.Handle("/static/*", http.StripPrefix("static", fileServer))
 
 	// router.Route("/", func(router chi.Router) {
+	router.Get("/", handlers.HandleIndex)
 	router.Post("/register", handlers.HandleRegister)
 	router.Post("/login", handlers.HandleLogin)
 	router.Get("/dashboard", handlers.HandleDashboard)

@@ -10,7 +10,7 @@ import (
 
 	"github.com/MyselfRoshan/goAuth/internals/database"
 	"github.com/MyselfRoshan/goAuth/internals/models"
-	"github.com/a-h/templ"
+	"github.com/MyselfRoshan/goAuth/templates"
 	"github.com/golang-jwt/jwt/v5"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -18,7 +18,7 @@ import (
 type response map[string]interface{}
 
 func HandleIndex(w http.ResponseWriter, r *http.Request) {
-	templ.Handler(templates.Home()).ServeHTTP()
+	templates.Home().Render(r.Context(), w)
 }
 
 func HandleRegister(w http.ResponseWriter, r *http.Request) {
