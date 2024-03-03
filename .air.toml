@@ -30,3 +30,4 @@ tmp_dir = "tmp"
 
 [misc]
   clean_on_exit = false
+  keep_scroll = true
