@@ -7,7 +7,7 @@ import (
 	"os"
 
 	"github.com/MyselfRoshan/goAuth/internals/database"
-	router "github.com/MyselfRoshan/goAuth/internals/routes"
+	"github.com/MyselfRoshan/goAuth/internals/routes"
 	"github.com/joho/godotenv"
 )
 
@@ -19,7 +19,7 @@ func main() {
 	}
 	// Connect to the database
 	database.Connect()
-	router := router.Router()
+	router := routes.Router()
 	PORT := fmt.Sprintf(":%v", os.Getenv("PORT"))
 	log.Panic(http.ListenAndServe(PORT, router))
 }

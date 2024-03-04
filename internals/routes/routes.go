@@ -21,15 +21,25 @@ func Router() http.Handler {
 		MaxAge:           300,
 	}))
 
-	fileServer := http.FileServer(http.Dir("/static"))
-	router.Handle("/static/*", http.StripPrefix("static", fileServer))
+	// Serve the static files from the ./public folder to localhost:<port-number>/
+	// Note: always use ./<folder-name> or <folder-name> instead of /<folder-name> to serve files
+	fileServer := http.FileServer(http.Dir("public"))
+	router.Handle("/*", http.StripPrefix("/", fileServer))
 
-	// router.Route("/", func(router chi.Router) {
+	// Handle Routing
 	router.Get("/", handlers.HandleIndex)
-	router.Post("/register", handlers.HandleRegister)
-	router.Post("/login", handlers.HandleLogin)
+
+	router.Route("/register", func(router chi.Router) {
+		router.Get("/", handlers.HandleRegisterPage)
+		router.Post("/", handlers.HandleRegister)
+	})
+
+	router.Route("/login", func(router chi.Router) {
+		router.Get("/", handlers.HandleLoginPage)
+		router.Post("/", handlers.HandleLogin)
+	})
+
 	router.Get("/dashboard", handlers.HandleDashboard)
 	router.Post("/logout", handlers.HandleLogout)
-	// })
 	return router
 }

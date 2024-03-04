@@ -1,0 +1,22 @@
+package pages
+
+import "github.com/MyselfRoshan/goAuth/templates/layout"
+
+templ Login() {
+	@layout.Base("Login", []string{"ajax", "login"}) {
+		<div class="wrapper">
+			<form id="loginForm">
+				<legend>Sign In</legend>
+				<div class="inputContainer">
+					<label for="email">Email: </label>
+					<input type="email" name="email" id="email"/>
+				</div>
+				<div class="inputContainer">
+					<label for="password">Password: </label>
+					<input type="password" name="password" id="password"/>
+				</div>
+				<button id="submit" type="submit">Sign In</button>
+			</form>
+		</div>
+	}
+}
