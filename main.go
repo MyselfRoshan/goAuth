@@ -21,5 +21,6 @@ func main() {
 	database.Connect()
 	router := routes.Router()
 	PORT := fmt.Sprintf(":%v", os.Getenv("PORT"))
+	log.Printf("%v Starting server at http://localhost%v", log.LstdFlags, PORT)
 	log.Panic(http.ListenAndServe(PORT, router))
 }
